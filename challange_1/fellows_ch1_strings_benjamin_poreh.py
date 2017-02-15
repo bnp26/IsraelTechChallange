@@ -42,3 +42,6 @@ def main(str1, str2):
     print "str = " + str1
     print "set = " + str2
     print "answer = " + repr(find_substring(str1, str2))
+    
+if __name__ == '__main__':
+	main("IsraelTechChallange", "hlartT")
