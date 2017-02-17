@@ -1,6 +1,9 @@
 #Author: Benjamin Poreh
 #ITC programming challange #1 
 
+#I use python because it's very simple to implement solutions to coding challanges in general.
+#Additionally, python allows for easy manipulation of data and a huge assortment of different datastructures to choose from.
+
 #first implementing my own hash map without a data secondary array.
 class HashMap:
     def __init__(self):
