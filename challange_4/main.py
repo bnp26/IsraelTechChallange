@@ -52,13 +52,9 @@ if __name__ == "__main__":
     output_file = ''
     args = sys.argv
     num_args = len(sys.argv)
-    print args
-    print num_args
     if num_args != 3:
         print 'main.py <inputfile> <outputfile>'
         sys.exit(2)
     input_file = args[1]
     output_file = args[2]
-    print input_file
-    print output_file
     main(input_file, output_file)
