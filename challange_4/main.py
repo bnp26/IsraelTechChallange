@@ -1,4 +1,10 @@
-import sys, getopt
+'''
+Author: Benjamin Poreh
+email: bnp26@case.edu
+hack.israeltechchallange account: bporeh
+'''
+
+import sys
 
 def num_of_bits(integer):
     binary = str(bin(integer)[2:])
@@ -44,17 +50,15 @@ def main(input_file, output_file):
 if __name__ == "__main__":
     input_file = ''
     output_file = ''
-    try:
-      opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
-   except getopt.GetoptError:
-      print 'test.py -i <inputfile> -o <outputfile>'
-      sys.exit(2)
-   for opt, arg in opts:
-      if opt == '-h':
-         print 'test.py -i <inputfile> -o <outputfile>'
-         sys.exit()
-      elif opt in ("-i", "--ifile"):
-         input_file = arg
-      elif opt in ("-o", "--ofile"):
-         output_file = arg
-    main()
+    args = sys.argv
+    num_args = len(sys.argv)
+    print args
+    print num_args
+    if num_args != 3:
+        print 'main.py <inputfile> <outputfile>'
+        sys.exit(2)
+    input_file = args[1]
+    output_file = args[2]
+    print input_file
+    print output_file
+    main(input_file, output_file)
