@@ -6,14 +6,16 @@ hack.israeltechchallange account: bporeh
 
 import sys
 
-def num_of_bits(integer):
-    binary = str(bin(integer)[2:])
-    counter = 0
-    for x in binary:
-        if x == '1':
-            counter = counter + 1
-    return counter
-    
+def num_of_bits(integer, counter):
+	binary = str(bin(integer)[2:])
+	current_bit = len(binary)-1
+	counter+=1
+	integer = integer - 2**current_bit
+	if integer == 0:
+		return counter
+	else:
+		return num_of_bits(integer, counter)
+
 def main(input_file, output_file):
     '''
     if len(inputs) != 2:
@@ -23,8 +25,7 @@ def main(input_file, output_file):
     nums_file = open(input_file, 'r')
     out = open(output_file, 'w')
     
-    num = 0
-
+    nums = []
     lines = nums_file.readlines()
     for line in lines:
         x = 0
@@ -33,16 +34,18 @@ def main(input_file, output_file):
         while line[x:x+1].isdigit():
             number += line[x]
             x+=1
-	if(number != ''):
-	    num = int(number)
-	    nums_file.close()
-	    break 
-    out.truncate()
 
-    num_bits = num_of_bits(num)
+	if(number != ''):
+	    nums.append(int(number))
     
-    out.write(str(num_bits))
-    out.write('\r\n')
+    nums_file.close()
+    out.truncate()
+    counter = 0
+    for x in nums:
+        num_bits = num_of_bits(x, counter)  
+        out.write(str(num_bits))
+        out.write('\r\n')
+    out.close()
     
 if __name__ == "__main__":
     input_file = ''
