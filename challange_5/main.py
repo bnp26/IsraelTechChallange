@@ -10,8 +10,6 @@ import sys
 class Node(object):
     def __init__(self, value):
         self.value = value
-    def value():
-        return self.value
 
 class Stack(object):
     def __init__(self):
@@ -28,8 +26,8 @@ class Stack(object):
             self.node_stack.append(node)
 	    self.mins_list.append(node)
         else:
-            minimum = self.__min__(self)
-            if node.value() <= minimum.value():
+            minimum = self.__min__()
+            if node.value <= minimum.value:
 	        self.mins_list.append(node)
                 self.node_stack.append(node)
         
@@ -44,7 +42,7 @@ class Stack(object):
     def min(self):
         if len(self.node_stack) == 0:
             return None
-        return self.__min__(self).value()	
+        return self.__min__().value
 
 def main(input_file, output_file):
     '''
@@ -58,20 +56,27 @@ def main(input_file, output_file):
     nums = []
     lines = nums_file.readlines()
     for line in lines:
-        while line != '\r\n' or line != '':
-            print line
-            print(line.rsplit('\t',2)[1])
-            nums.append(int(line.rpartition('\t')[0]))
-            if line.rpartition('\t')[1] == '\r\n':
-                break
-            line = line.rpartition('\t')[1][1:]
-            print nums
-    
+	line_ending = ""
+	if line[:len(line)-2] != '\r\n':
+	    line_ending = '\r\n'
+	else:
+	    line_ending = '\n'
+        while line != line_ending:
+            str_split = line.split("\t",1)
+	    nums.append(int(str_split[0]))
+	    if len(str_split) == 1:
+		break
+	    else:
+		line = str_split[1]
+    nums_file.close() 
     stack = Stack()
     for num in nums:
         stack.push(num)
-    print stack.min()
-	
+
+    out.write(str(stack.min()))
+    out.write('\r\n')
+    out.close()
+    return
 if __name__ == "__main__":
     input_file = ''
     output_file = ''

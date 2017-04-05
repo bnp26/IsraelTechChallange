@@ -1,10 +1,20 @@
-from qam.qam_proxy import QAMProxy, QAMMethodNotFoundException, QAMException
+from xmlrpclib import ServerProxy
+import json
+import requests
 
-qam_server = QAMProxy(hostname="http://hack.israeltechallenge.com", port=8000, username='ITC', password='ITC', vhost='/', server_id='qamserver', client_id='qamproxy')
+url = "http://ITC@hack.israeltechchallenge.com:8000/jsonrpc"
+headers = {'content-type': 'application/json'}
 
-result = qam_proxy.my_instance.help()
+payload = {"method": "help", "jsonrpc": "2.0", "id": 0,}
 
-print result
+response = requests.post(url, data=json.dumps(payload), headers=headers).json()
 
-qam_server.close()
+print response["result"]
+for method in proxy.system.listMethods():
+    print method
+    print proxy.system.methodHelp(method)
+    print
+methods = proxy.system.listMethods()
+
+print methods
 
