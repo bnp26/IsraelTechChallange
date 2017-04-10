@@ -1,20 +1,17 @@
-from xmlrpclib import ServerProxy
-import json
-import requests
+import pyjsonrpc
 
-url = "http://ITC@hack.israeltechchallenge.com:8000/jsonrpc"
-headers = {'content-type': 'application/json'}
+http_client = pyjsonrpc.HttpClient(
+    url = "http://hack.israeltechallenge.com:8000",
+    username = "ITC"
+)
 
-payload = {"method": "help", "jsonrpc": "2.0", "id": 0,}
+#^[k-n3-5#]{2,4}$
+#klmn345#
+options = "klnb345#"
+	for
 
-response = requests.post(url, data=json.dumps(payload), headers=headers).json()
-
-print response["result"]
-for method in proxy.system.listMethods():
-    print method
-    print proxy.system.methodHelp(method)
-    print
-methods = proxy.system.listMethods()
-
-print methods
-
+print http_client.call("help")
+print http_client.call("ping")
+username = 'ITC'
+password = '123456'
+print http_client.call("login", username, password)
